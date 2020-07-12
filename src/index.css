@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.CounterDisplay{
+  background-color: khaki;
+  width: 300px;
+  text-align: center;
+  margin: auto;
+  padding: 100px;
+  border: 1px solid black;
+}
