@@ -8,6 +8,7 @@ class App extends React.Component {
       number: 0,
     };
   }
+
   handleIncr = () => {
     this.setState(function (prevState) {
       return { number: prevState.number + 1 };
@@ -21,6 +22,7 @@ class App extends React.Component {
       });
     }
   };
+
   handleReset = () => {
     this.setState(function (prevState) {
       return { number: 0 };
