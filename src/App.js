@@ -7,29 +7,19 @@ class App extends React.Component {
     this.state = {
       number: 0,
     };
-  };
-//////////////////////////////////////////using For loop here////////////////////////////////////////////////////////////////////////
+  }
   handleIncr = () => {
     this.setState(function (prevState) {
-      for (this.state.number = 0; this.state.number <= 50; this.state.number++) {
-        return { number: prevState.number + 1 };
-      };
+      return { number: prevState.number + 1 };
     });
   };
 
-  /////////////////////////////////////////////////using if else condition////////////////////////////////////////////////////
-// handleIncr = () => {
-//   if (this.state.number <= 50){
-//     alert ("You have reached to the max no")
-//     this.setState(function () {return{number: 0}});
-//   }else {
-//     this.setState(function (prevState) {return {number:prevState.number+1}});
-//   };
-// };
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   handleDecre = () => {
-    this.setState(function (prevState) {return { number: prevState.number - 1 };});
+    if (this.state.number > 0) {
+      this.setState(function (prevState) {
+        return { number: prevState.number - 1 };
+      });
+    }
   };
   handleReset = () => {
     this.setState(function (prevState) {
@@ -46,7 +36,7 @@ class App extends React.Component {
         <button onClick={this.handleDecre}>Decr</button>
       </div>
     );
-  };
-};
+  }
+}
 
 export default App;
