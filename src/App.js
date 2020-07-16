@@ -10,10 +10,10 @@ class App extends React.Component {
   }
 
   handleIncr = () => {
-    if (this.state.number < 50) {
-      this.setState(function (prevState) {
-        return { number: prevState.number + 1 };
-      });
+    const { number } = this.state;
+
+    if (number < 50) {
+      this.setState({ number: number + 1 });
     }
   };
 
@@ -24,7 +24,7 @@ class App extends React.Component {
       });
     }
   };
-  
+
   handleReset = () => {
     this.setState(function (prevState) {
       return { number: 0 };
