@@ -18,17 +18,15 @@ class App extends React.Component {
   };
 
   handleDecre = () => {
-    if (this.state.number > 0) {
-      this.setState(function (prevState) {
-        return { number: prevState.number - 1 };
-      });
+    const { number } = this.state;
+    if (number > 0) {
+      this.setState({ number: number - 1 });
     }
   };
 
   handleReset = () => {
-    this.setState(function (prevState) {
-      return { number: 0 };
-    });
+    const { number } = this.state;
+    this.setState({ number: 0 });
   };
 
   render() {
