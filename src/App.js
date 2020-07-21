@@ -5,7 +5,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      number: 0,
+      number: 49,
     };
   }
 
@@ -32,16 +32,16 @@ class App extends React.Component {
       <div className="Counter-Display" id="counter">
         <h1>Counter : {this.state.number}</h1>
         <button
-          disabled={this.state.number === 50 ? true : undefined}
+          disabled={this.state.number >= 50 ? true : false}
           onClick={this.handleIncr}
         >
           Add
         </button>
 
         <button onClick={this.handleReset}>Reset</button>
-        
+
         <button
-          disabled={this.state.number === 0 ? true : undefined}
+          disabled={this.state.number <= 0 ? true : false}
           onClick={this.handleDecre}
         >
           Decr
