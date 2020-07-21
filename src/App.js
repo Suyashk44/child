@@ -9,9 +9,8 @@ class App extends React.Component {
     };
   }
 
-  handleIncr = () => {
+  handleIncr = (btn) => {
     const { number } = this.state;
-
     if (number < 50) {
       this.setState({ number: number + 1 });
     }
@@ -25,17 +24,28 @@ class App extends React.Component {
   };
 
   handleReset = () => {
-    const { number } = this.state;
     this.setState({ number: 0 });
   };
 
   render() {
     return (
-      <div className="Counter-Display">
+      <div className="Counter-Display" id="counter">
         <h1>Counter : {this.state.number}</h1>
-        <button onClick={this.handleIncr}>Add</button>
+        <button
+          disabled={this.state.number === 50 ? true : undefined}
+          onClick={this.handleIncr}
+        >
+          Add
+        </button>
+
         <button onClick={this.handleReset}>Reset</button>
-        <button onClick={this.handleDecre}>Decr</button>
+        
+        <button
+          disabled={this.state.number === 0 ? true : undefined}
+          onClick={this.handleDecre}
+        >
+          Decr
+        </button>
       </div>
     );
   }
