@@ -34,7 +34,7 @@ class Counter extends React.Component {
           handleIncr = {this.handleIncr}
           handleDecre = {this.handleDecre}
           handleReset = {this.handleReset}
-          data = {this.state}
+          number = {this.state.number}
           />
       </div>
     );
