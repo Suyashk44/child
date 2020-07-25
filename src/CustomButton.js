@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
-function CustomButton (props) {
+function CustomButton(props) {
   return (
-    <button disabled = {props.isDisabled} onClick = {props.onClickHandler}>
-      {props.buttonNmae}
+    <button disabled={props.isDisabled} onClick={props.onClickHandler}>
+      {props.buttonName}
     </button>
-  )
+  );
 }
 
-export default CustomButton
+export default CustomButton;
