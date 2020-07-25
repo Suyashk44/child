@@ -1,15 +1,17 @@
 import React from "react";
+import CustomButton from "./CustomButton";
 
 function User(props) {
   return (
     <>
       <h1>Counter : {props.number}</h1>
-      <button
-        disabled={props.number >= 50 ? true : false}
-        onClick={props.handleIncr}
-      >
-        Add
-      </button>
+      <CustomButton
+        buttonName="Add"
+        onClickHandler={props.handleIncr}
+        isDisabled={props.number >= 50 ? true : false}
+      />
+
+      <CustomButton buttonName="Reset" />
 
       <button onClick={props.handleReset}>Reset</button>
 

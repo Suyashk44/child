@@ -5,7 +5,7 @@ class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: 49,
+      number: 0,
     };
   }
 
@@ -30,12 +30,12 @@ class Counter extends React.Component {
   render() {
     return (
       <div className="Counter-Display" id="counter">
-          <User 
-          handleIncr = {this.handleIncr}
-          handleDecre = {this.handleDecre}
-          handleReset = {this.handleReset}
-          number = {this.state.number}
-          />
+        <User
+          handleIncr={this.handleIncr}
+          handleDecre={this.handleDecre}
+          handleReset={this.handleReset}
+          number={this.state.number}
+        />
       </div>
     );
   }
