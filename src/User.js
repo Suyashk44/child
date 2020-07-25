@@ -1,10 +1,26 @@
 import React from "react";
+import CustomButton from "./CustomButton";
 
 function User(props) {
   return (
     <>
       <h1>Counter : {props.number}</h1>
-      <button
+      <CustomButton 
+      buttonName = "Add"
+      onClickHandler = {props.handleIncr}
+      isDisabled = {props.number >= 50 ? true : false}
+      />
+
+      <CustomButton 
+      buttonNae = "Reset"
+      onClickHandler = {props.handleReset}
+      />
+
+
+
+
+
+      {/* <button
         disabled={props.number >= 50 ? true : false}
         onClick={props.handleIncr}
       >
@@ -17,8 +33,8 @@ function User(props) {
         disabled={props.number <= 0 ? true : false}
         onClick={props.handleDecre}
       >
-        Decr
-      </button>
+  
+      </button> */}
     </>
   );
 }
