@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "./CustomButton";
+import CustomButton from "../CustomButton";
 
 function User(props) {
   return (
@@ -11,17 +11,13 @@ function User(props) {
         isDisabled={props.number >= 50 ? true : false}
       />
 
-      <CustomButton 
-      buttonName="Reset" 
-      onClickHandler = {props.handleReset}
-      />
-      
-      <CustomButton 
-      buttonName ="Decre"
-      onClickHandler={props.handleDecre}
-      isDisabled={props.number <= 0 ? true : false}
-      />
+      <CustomButton buttonName="Reset" onClickHandler={props.handleReset} />
 
+      <CustomButton
+        buttonName="Decre"
+        onClickHandler={props.handleDecre}
+        isDisabled={props.number <= 0 ? true : false}
+      />
     </>
   );
 }
