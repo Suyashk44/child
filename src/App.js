@@ -1,14 +1,15 @@
 import React from "react";
 import "./App.css";
-import Counter from "./Counter";
+// import Counter from "./Counter/Counter";
+import ListOperations from "./ListOperations/ListOperations";
 
 function App() {
   return (
     <div>
-      <Counter />
+      {/* <Counter /> */}
+      <ListOperations />
     </div>
   );
 }
-
 
 export default App;
