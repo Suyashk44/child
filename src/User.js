@@ -14,6 +14,7 @@ function User(props) {
       <CustomButton 
       buttonName="Reset" 
       onClickHandler = {props.handleReset}
+      isDisabled={props.number != 0 ? false : true}
       />
       
       <CustomButton 
