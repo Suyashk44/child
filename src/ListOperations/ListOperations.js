@@ -34,6 +34,13 @@ export default class ListOperations extends React.Component {
       });
   };
 
+  handleDelete = () => {
+    console.log("Deleting")
+    const {myListData} = this.state;
+    let newData = myListData.shift();
+    this.setState({newData:myListData})
+  }
+
   renderList = () => {
     const { myListData } = this.state;
 
@@ -41,6 +48,8 @@ export default class ListOperations extends React.Component {
       <tr>
         <td>{x.id}</td>
         <td>{x.title}</td>
+        <td>{x.body}</td>
+        <td><button onClick={this.handleDelete}>Delete</button></td>
       </tr>
     ));
 
@@ -76,11 +85,13 @@ export default class ListOperations extends React.Component {
         <h2>ListOperations</h2>
         <button onClick={this.handleButton}>Click Here</button>
         <div>
-          <table>
+          <table border ="1">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Title</th>
+                <th>Body</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>{this.renderList()}</tbody>
