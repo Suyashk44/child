@@ -1,91 +1,78 @@
 import React from "react";
-const temp = [
-  {
-    id: 1,
-    title: "onesdfsdf",
-  },
-  {
-    id: 333,
-    title: "twowwwww",
-  },
-  {
-    id: 3,
-    title: "thre123123e",
-  },
-];
 
 export default class ListOperations extends React.Component {
   state = {
     myListData: [],
+    id: "",
   };
 
-  handleButton = () => {
-    // this.setState({ myListData: temp });
-    // console.log("temp Before: ", temp);
-    // const a = temp.map((x) => x.id);
-
-    // console.log("temp After: ", temp);
-    // console.log("a after: ", a);
-
+  componentDidMount() {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((data) => {
         this.setState({ myListData: data });
       });
+  }
+//--------1.--------- stored input element---------------------
+  // handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   this.setState({ [name]: value });
+  //   console.log(this.state.id);
+
+  //   const {myListData} = this.state;
+  //   const searchResult = myListData.filter((u)=>u.id === this.state.id);
+  //   this.setState({myListData : searchResult});
+  //   console.log(searchResult);
+  // };
+
+  //-------2.---------find()method
+  handleChange = () => {
+    const { myListData } = this.state;
+    const input = document.getElementById("input");
+    const searchResult = myListData.find((u) => u.id === input);
+    this.setState({ myListData: searchResult });
+    console.log(searchResult);
   };
 
-  handleDelete = () => {
-    console.log("Deleting")
-    const {myListData} = this.state;
-    let newData = myListData.shift();
-    this.setState({newData:myListData})
-  }
+  handleDelete = (rowToDelete) => {
+    const { myListData } = this.state;
+    let newData = myListData.filter((x) => x.id !== rowToDelete.id);
+    this.setState({ myListData: newData });
+  };
 
   renderList = () => {
     const { myListData } = this.state;
 
     const list = myListData.map((x) => (
-      <tr>
+      <tr key={x.id}>
         <td>{x.id}</td>
         <td>{x.title}</td>
         <td>{x.body}</td>
-        <td><button onClick={this.handleDelete}>Delete</button></td>
+        <td>
+          <button onClick={() => this.handleDelete(x)}>Delete</button>
+        </td>
       </tr>
     ));
 
-    console.log("list: ", list);
-
     return list;
-
-    // return (
-    //   <>
-    //     <tr>
-    //       <td>1</td>
-    //       <td>sldj</td>
-    //     </tr>
-    //     <tr>
-    //       <td>2</td>
-    //       <td>sldj</td>
-    //     </tr>
-    //     <tr>
-    //       <td>3</td>
-    //       <td>sldj</td>
-    //     </tr>
-    //     <tr>
-    //       <td>4</td>
-    //       <td>sldj</td>
-    //     </tr>
-    //   </>
-    // );
   };
 
   render() {
     return (
       <div>
         <h2>ListOperations</h2>
-        <button onClick={this.handleButton}>Click Here</button>
+
         <div>
-          <table border ="1">
+          <input
+            placeholder="Enter id here"
+            type="number"
+            name="id"
+            id="input"
+            onChange={this.handleChange}
+          />
+        </div>
+        <div>
+          <table border="1">
             <thead>
               <tr>
                 <th>ID</th>
@@ -101,8 +88,3 @@ export default class ListOperations extends React.Component {
     );
   }
 }
-
-// 1. array
-// 2. map and forEach
-// 3. functions, a) functions that do NOT return any value
-//               b) functions that DO return value
