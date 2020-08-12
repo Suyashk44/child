@@ -13,7 +13,7 @@ export default class ListOperations extends React.Component {
         this.setState({ myListData: data });
       });
   }
-//--------1.--------- stored input element---------------------
+  //--------1.--------- stored input element---------------------
   // handleChange = (event) => {
   //   const { name, value } = event.target;
   //   this.setState({ [name]: value });
@@ -26,10 +26,11 @@ export default class ListOperations extends React.Component {
   // };
 
   //-------2.---------find()method
-  handleChange = () => {
+  handleChange = (e) => {
+    // e is the event object of input element
     const { myListData } = this.state;
-    const input = document.getElementById("input");
-    const searchResult = myListData.find((u) => u.id === input);
+    const input = document.getElementById("input"); // not needed
+    const searchResult = myListData.filter((u) => u.id == e.target.value);
     this.setState({ myListData: searchResult });
     console.log(searchResult);
   };
