@@ -3,7 +3,7 @@ import React from "react";
 export default class ListOperations extends React.Component {
   state = {
     myListData: [],
-    id: "",
+    button: false,
   };
 
   componentDidMount() {
@@ -13,26 +13,26 @@ export default class ListOperations extends React.Component {
         this.setState({ myListData: data });
       });
   }
-  //--------1.--------- stored input element---------------------
-  // handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   this.setState({ [name]: value });
-  //   console.log(this.state.id);
 
-  //   const {myListData} = this.state;
-  //   const searchResult = myListData.filter((u)=>u.id === this.state.id);
-  //   this.setState({myListData : searchResult});
-  //   console.log(searchResult);
-  // };
+  handleSubmit = () => {
+    this.setState({ button: true });
+    console.log(this.state.button);
+  };
 
-  //-------2.---------find()method
   handleChange = (e) => {
-    // e is the event object of input element
-    const { myListData } = this.state;
-    const input = document.getElementById("input"); // not needed
-    const searchResult = myListData.filter((u) => u.id == e.target.value);
-    this.setState({ myListData: searchResult });
-    console.log(searchResult);
+    const { button } = this.state;
+    if (button === true) {
+      const { myListData } = this.state;
+      const searchResult = myListData.filter((u) => 
+    // button === true ? 
+      u.id === e.target.value
+      //:
+      // "Result not found"
+      );
+      this.setState({ myListData: searchResult });
+      console.log(searchResult);
+    }
+    
   };
 
   handleDelete = (rowToDelete) => {
@@ -62,7 +62,7 @@ export default class ListOperations extends React.Component {
     return (
       <div>
         <h2>ListOperations</h2>
-
+      
         <div>
           <input
             placeholder="Enter id here"
@@ -71,6 +71,13 @@ export default class ListOperations extends React.Component {
             id="input"
             onChange={this.handleChange}
           />
+          <button
+            name="button"
+            // value={this.state.button}
+            onClick={this.handleSubmit}
+          >
+            Submit
+          </button>
         </div>
         <div>
           <table border="1">
