@@ -3,7 +3,6 @@ import React from "react";
 export default class ListOperations extends React.Component {
   state = {
     myListData: [],
-    // button: false,
     valueToSearch: "",
   };
 
@@ -16,30 +15,18 @@ export default class ListOperations extends React.Component {
   }
 
   handleSubmit = () => {
-    // this.setState({ button: true });
-    // console.log(this.state.button);
     const { myListData, valueToSearch } = this.state;
     const numberToSearch = parseInt(valueToSearch);
     const searchResult = myListData.filter((u) => u.id === numberToSearch);
     this.setState({ myListData: searchResult });
-    // const y = typeof numberToSearch;
-    // console.log(y);
+    console.log("number " + numberToSearch);
   };
 
   onChangeSearch = (e) => {
     const { valueToSearch } = this.state;
     this.setState({ valueToSearch: e.target.value });
-    const x = typeof valueToSearch;
-    // console.log(valueToSearch);
-    // console.log(x);
+    console.log("value is " + valueToSearch);
   };
-
-  // handleChange = (e) => {
-  //   const { myListData, searchResult } = this.state;
-  //   const result = myListData.filter((u) => u.id == e.target.value);
-  //   this.setState({ searchResult: result });
-  //   console.log(searchResult);
-  // };
 
   handleDelete = (rowToDelete) => {
     const { myListData } = this.state;
