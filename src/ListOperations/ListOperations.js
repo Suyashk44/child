@@ -4,6 +4,8 @@ export default class ListOperations extends React.Component {
   state = {
     myListData: [],
     valueToSearch: "",
+    orignalData: [],
+    resultNotFound: ""
   };
 
   componentDidMount() {
@@ -11,21 +13,22 @@ export default class ListOperations extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({ myListData: data });
+        this.setState({ orignalData: data });
       });
   }
 
   handleSubmit = () => {
-    const { myListData, valueToSearch } = this.state;
+    const { resultNotFound, valueToSearch, orignalData } = this.state;
     const numberToSearch = parseInt(valueToSearch);
-    const searchResult = myListData.filter((u) => u.id === numberToSearch);
+    const searchResult = orignalData.filter((u) => u.id === numberToSearch);
     this.setState({ myListData: searchResult });
-    console.log("number " + numberToSearch);
+    // const noDataFound = searchResult.length == 0 ? this.setState({resultNotFound : "Result Not Found"}) : null
+    const noDataFound = searchResult.length === 0 ? alert("Result Not Found") : null
+    // console.log(resultNotFound);
   };
 
   onChangeSearch = (e) => {
-    const { valueToSearch } = this.state;
     this.setState({ valueToSearch: e.target.value });
-    console.log("value is " + valueToSearch);
   };
 
   handleDelete = (rowToDelete) => {
@@ -79,6 +82,7 @@ export default class ListOperations extends React.Component {
               </tr>
             </thead>
             <tbody>{this.renderList()}</tbody>
+           
           </table>
         </div>
       </div>
