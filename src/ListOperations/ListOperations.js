@@ -5,7 +5,7 @@ export default class ListOperations extends React.Component {
     myListData: [],
     valueToSearch: "",
     orignalData: [],
-    resultNotFound: "",
+    showNoRecordsMessage: false,
   };
 
   componentDidMount() {
@@ -18,14 +18,14 @@ export default class ListOperations extends React.Component {
   }
 
   handleSubmit = () => {
-    const { resultNotFound, valueToSearch, orignalData } = this.state;
+    const { valueToSearch, orignalData } = this.state;
     const numberToSearch = parseInt(valueToSearch);
     const searchResult = orignalData.filter((u) => u.id === numberToSearch);
-    this.setState({ myListData: searchResult });
-    // const noDataFound = searchResult.length == 0 ? this.setState({resultNotFound : "Result Not Found"}) : null
-    const noDataFound =
-      searchResult.length === 0 ? alert("Result Not Found") : null;
-    // console.log(resultNotFound);
+    const isSearchResultEmpty = searchResult.length === 0 ? true : false;
+    this.setState({
+      myListData: searchResult,
+      showNoRecordsMessage: isSearchResultEmpty,
+    });
   };
 
   onChangeSearch = (e) => {
@@ -83,8 +83,8 @@ export default class ListOperations extends React.Component {
               </tr>
             </thead>
             <tbody>{this.renderList()}</tbody>
-            <div>No records found!</div>
           </table>
+          {this.state.showNoRecordsMessage && <div>No records found!</div>}
         </div>
       </div>
     );
