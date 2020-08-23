@@ -6,6 +6,7 @@ export default class ListOperations extends React.Component {
     valueToSearch: "",
     orignalData: [],
     showNoRecordsMessage: false,
+    selectedRow: [],
   };
 
   componentDidMount() {
@@ -18,24 +19,38 @@ export default class ListOperations extends React.Component {
   }
 
   handleSubmit = () => {
-    const { valueToSearch, orignalData } = this.state;
-    const numberToSearch = parseInt(valueToSearch);
-    const searchResult = orignalData.filter((u) => u.id === numberToSearch);
+    const { valueToSearch, orignalData, showNoRecordsMessage } = this.state;
+    const searchResult = orignalData.filter(
+      (u) => u.id === parseInt(valueToSearch)
+    );
     const isSearchResultEmpty = searchResult.length === 0 ? true : false;
     this.setState({
       myListData: searchResult,
       showNoRecordsMessage: isSearchResultEmpty,
     });
+    console.log(isSearchResultEmpty);
   };
 
   onChangeSearch = (e) => {
     this.setState({ valueToSearch: e.target.value });
   };
+  
+  handleDelete = () => {
+    const { myListData, selectedRow } = this.state;
+    console.log(selectedRow);
+    const dataToDelete = myListData.filter((mylist)=> !selectedRow.includes(mylist))
+      this.setState({ myListData: dataToDelete });
+  };
 
-  handleDelete = (rowToDelete) => {
-    const { myListData } = this.state;
-    let newData = myListData.filter((x) => x.id !== rowToDelete.id);
-    this.setState({ myListData: newData });
+  handleCheck = (rowToSelect) => {
+    // const listId=[1,2];
+    // listId.push(rowToSelect);
+    // console.log(listId);
+
+    const { selectedRow } = this.state;
+    selectedRow.push(rowToSelect);
+    this.setState({ selectedRow: selectedRow });
+    // console.log(selectedRow);
   };
 
   renderList = () => {
@@ -47,7 +62,12 @@ export default class ListOperations extends React.Component {
         <td>{x.title}</td>
         <td>{x.body}</td>
         <td>
-          <button onClick={() => this.handleDelete(x)}>Delete</button>
+          {/* <button onClick={() => this.handleDelete(x)}>Delete</button> */}
+          <input
+            type="checkbox"
+            name="select"
+            onClick={() => this.handleCheck(x)}
+          />
         </td>
       </tr>
     ));
@@ -71,6 +91,8 @@ export default class ListOperations extends React.Component {
           <button name="button" onClick={this.handleSubmit}>
             Submit
           </button>
+          <br />
+          <button onClick={() => this.handleDelete()}>Delete Selected</button>
         </div>
         <div>
           <table border="1">
