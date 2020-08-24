@@ -18,60 +18,53 @@ export default class ListOperations extends React.Component {
       });
   }
 
+  onChangeSearch = (e) => {
+    this.setState({ valueToSearch: e.target.value });
+  };
+
   handleSubmit = () => {
-    const { valueToSearch, orignalData, showNoRecordsMessage } = this.state;
-    const searchResult = orignalData.filter(
-      (u) => u.id === parseInt(valueToSearch)
-    );
+    const { valueToSearch, orignalData } = this.state;
+    const searchResult = orignalData.filter((u) => u.id === parseInt(valueToSearch));
     const isSearchResultEmpty = searchResult.length === 0 ? true : false;
     this.setState({
       myListData: searchResult,
       showNoRecordsMessage: isSearchResultEmpty,
     });
-    console.log(isSearchResultEmpty);
   };
 
-  onChangeSearch = (e) => {
-    this.setState({ valueToSearch: e.target.value });
+  handleCheck = (rowToSelect, e) => {
+    const { selectedRow } = this.state;
+    if (e.target.checked === true) {
+      selectedRow.push(rowToSelect);
+      this.setState({ selectedRow: selectedRow });
+    } else {
+      const removeSelectedRow = selectedRow.filter((x) => x.id !== rowToSelect.id);
+      this.setState({ selectedRow: removeSelectedRow });
+    }
   };
-  
+
   handleDelete = () => {
     const { myListData, selectedRow } = this.state;
-    console.log(selectedRow);
-    const dataToDelete = myListData.filter((mylist)=> !selectedRow.includes(mylist))
-      this.setState({ myListData: dataToDelete });
-  };
-
-  handleCheck = (rowToSelect) => {
-    // const listId=[1,2];
-    // listId.push(rowToSelect);
-    // console.log(listId);
-
-    const { selectedRow } = this.state;
-    selectedRow.push(rowToSelect);
-    this.setState({ selectedRow: selectedRow });
-    // console.log(selectedRow);
+    const dataToDelete = myListData.filter((mylist) => !selectedRow.includes(mylist));
+    this.setState({ myListData: dataToDelete });
   };
 
   renderList = () => {
     const { myListData } = this.state;
-
     const list = myListData.map((x) => (
       <tr key={x.id}>
         <td>{x.id}</td>
         <td>{x.title}</td>
         <td>{x.body}</td>
         <td>
-          {/* <button onClick={() => this.handleDelete(x)}>Delete</button> */}
           <input
             type="checkbox"
             name="select"
-            onClick={() => this.handleCheck(x)}
+            onClick={(e) => this.handleCheck(x, e)}
           />
         </td>
       </tr>
     ));
-
     return list;
   };
 
@@ -79,7 +72,6 @@ export default class ListOperations extends React.Component {
     return (
       <div>
         <h2>ListOperations</h2>
-
         <div>
           <input
             placeholder="Enter id here"
