@@ -1,11 +1,7 @@
 import React from "react";
 
-function Mango(props) {
-  return (
-    <div className="border">
-      <div>Mango also says:{props.input}</div>
-    </div>
-  );
+export default class Mango extends React.Component {
+  render() {
+    return <div className="border-blue">{this.props.dataFromApple}</div>;
+  }
 }
-
-export default Mango;

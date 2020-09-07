@@ -9,20 +9,21 @@ export default class Apple extends React.Component {
   handleChange = (e) => {
     const { input } = this.state;
     this.setState({ input: e.target.value });
-    console.log(input);
+  };
+
+  handleButton = () => {
+    this.props.onChangedataFromApple(this.state.input);
   };
 
   render() {
     return (
-      <div className="border">
+      <div className="border-red">
         <input
           type="text"
           placeholder="Enter text here"
           onChange={this.handleChange}
         />
-        <div>Apple says:{this.state.input}</div>
-
-        <Mango input={this.state.input} />
+        <button onClick={this.handleButton}>Send to Mango</button>
       </div>
     );
   }
