@@ -4,7 +4,7 @@ import { store } from "./store";
 console.log("Rose Store", store.getState());
 
 export default class Rose extends React.Component {
-  conClickRose = () => {
+  onClickRose = () => {
     console.log("Rose Store on click", store.getState());
   };
 
@@ -12,7 +12,7 @@ export default class Rose extends React.Component {
     return (
       <div>
         Rose
-        <button onClick={this.conClickRose}>Click to check Rose store</button>
+        <button onClick={this.onClickRose}>Click to check Rose store</button>
       </div>
     );
   }

@@ -34,3 +34,48 @@ code {
   border-color: blue;
   margin: 5px;
 }
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(73, 79, 82);
+  color: white;
+}
+
+.homePage {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: aliceblue;
+  color: black;
+}
+
+.aboutPage {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(118, 224, 123);
+  color: black;
+}
+
+.shopPage {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(80, 196, 64);
+  color: black;
+}
+
+.nav-links {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-link-style {
+  color: white;
+}

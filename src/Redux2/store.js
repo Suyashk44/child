@@ -6,11 +6,11 @@ const initialData = {
 };
 const reducer = (state = initialData, action) => {
   switch (action.type) {
-    case "my_Action":
+    case "My_Action":
       const newState = { ...state, ...{ data1: action.payload } };
       return newState;
 
-    case "my_Action2":
+    case "My_Action2":
       const newState2 = { ...state, ...{ data2: action.payload } };
       return newState2;
 

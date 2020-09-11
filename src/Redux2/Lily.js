@@ -4,7 +4,7 @@ import { store } from "./store";
 console.log("Lily Store", store.getState());
 
 export default class Lily extends React.Component {
-  conClickLily = () => {
+  onClickLily = () => {
     console.log("Lily Store on click", store.getState());
   };
 
@@ -12,7 +12,7 @@ export default class Lily extends React.Component {
     return (
       <div>
         Lily
-        <button onClick={this.conClickLily}>Click to check Lily store</button>
+        <button onClick={this.onClickLily}>Click to check Lily store</button>
       </div>
     );
   }

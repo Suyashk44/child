@@ -6,7 +6,7 @@ import Lily from "./Lily.js";
 export default class Flowers extends React.Component {
   onClickDispatchAction = () => {
     const myAction = {
-      type: "my_Action",
+      type: "My_Action",
       payload: "Hello World!",
     };
 
@@ -16,7 +16,7 @@ export default class Flowers extends React.Component {
   };
   onClickDispatchAction2 = () => {
     const myAction2 = {
-      type: "my_Action2",
+      type: "My_Action2",
       payload: "How u doing!",
     };
 
